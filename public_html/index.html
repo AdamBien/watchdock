@@ -32,7 +32,14 @@
                 <table class = "panel">
                     <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
                     <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
+                    <tr><td>Start args:</td><td>{{containerDetails.Args}}</td></tr>
                     <tr><td>Created:</td><td>{{containerDetails.Created}}</td></tr>
+                    <tr><td>Exposed ports:</td><td>{{containerDetails.Config.ExposedPorts}}</td></tr>
+                    <tr><td>Environment:</td><td>{{containerDetails.Config.Env}}</td></tr>
+                    <tr><td>PID:</td><td>{{containerDetails.State.Pid}}</td></tr>
+                    <tr><td>IP:</td><td>{{containerDetails.NetworkSettings.IPAddress}}</td></tr>
+                    <tr><td>Bridge:</td><td>{{containerDetails.NetworkSettings.Bridge}}</td></tr>
+                    <tr><td>Ports:</td><td>{{containerDetails.NetworkSettings.Ports}}</td></tr>
                 </table>
             </section>
         </section>
