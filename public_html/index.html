@@ -19,6 +19,7 @@
 
             <input type="text" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
             <section>
+                <h2>Images</h2>
                 <table class="containers">
                     <tr>
                         <th>Name</th><th>Image</th><th>Status</th>
@@ -29,6 +30,7 @@
                 </table>
             </section>
             <section class="container-details">
+                <h2>Container info</h2>
                 <table class = "panel">
                     <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
                     <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
@@ -43,16 +45,24 @@
                 </table>
             </section>
             <section class="container-details">
+                <h2>Process info</h2>
                 <table>
                     <tr>
                         <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
                     </tr>
                     <tr ng-repeat="process in runtimeInfo.Processes">
-                        <td ng-repeat="info in process">
-                            {{info}}</td>
+                        <td ng-repeat="info in process">{{info}}</td>
                     </tr>
                 </table>
             </section>
+            <section class="container-details">
+                <h2>Filesystem Changes</h2>
+                <h3>Path</h3>
+                <ul ng-repeat="change in changes| orderBy:predicate = 'Kind'">
+                    <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
+                </ul>
+            </section>
+
         </section>
     </body>
 </html>

@@ -17,7 +17,19 @@ docker.controller("containerController",
                     $scope.runtimeInfo = data;
                 });
 
+                Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"), function(data) {
+                    $scope.changes = data;
+                });
             };
+
+            $scope.classForKind = function(kind) {
+                if (kind === 1)
+                    return 'created';
+                else
+                    return 'changed';
+
+
+            }
 
             var computeUri = function(baseUri, reminder) {
                 if (baseUri !== '') {
