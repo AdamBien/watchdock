@@ -29,9 +29,11 @@
                 </table>
             </section>
             <section class="container-details">
-                <div class = "panel">
-                    {{containerDetails}}
-                </div>
+                <table class = "panel">
+                    <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
+                    <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
+                    <tr><td>Created:</td><td>{{containerDetails.Created}}</td></tr>
+                </table>
             </section>
         </section>
     </body>
