@@ -9,7 +9,6 @@ docker.controller("containerController",
 
             }
             $scope.containerSelected = function(containerName, containerId) {
-                console.log(containerName, containerId);
                 Rest.get(computeUri(Connection.uri, "containers" + containerName + "/json"), function(data) {
                     $scope.containerDetails = data;
                 });
@@ -19,6 +18,9 @@ docker.controller("containerController",
 
                 Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"), function(data) {
                     $scope.changes = data;
+                });
+                Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"), function(data) {
+                    $scope.logs = data;
                 });
             };
 

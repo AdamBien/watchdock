@@ -56,13 +56,17 @@
                 </table>
             </section>
             <section class="container-details">
-                <h2>Filesystem Changes</h2>
+                <h2>File Changes</h2>
                 <h3>Path</h3>
                 <ul ng-repeat="change in changes| orderBy:predicate = 'Kind'">
                     <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
                 </ul>
             </section>
 
+            <section class="container-details">
+                <h2>Logs</h2>
+                {{logs}}
+            </section>
         </section>
     </body>
 </html>
