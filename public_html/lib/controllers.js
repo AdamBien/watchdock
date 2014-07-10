@@ -8,12 +8,17 @@ docker.controller("containerController",
                 });
 
             }
-            $scope.containerSelected = function(containerName) {
-                console.log(containerName);
+            $scope.containerSelected = function(containerName, containerId) {
+                console.log(containerName, containerId);
                 Rest.get(computeUri(Connection.uri, "containers" + containerName + "/json"), function(data) {
                     $scope.containerDetails = data;
                 });
+                Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/top"), function(data) {
+                    $scope.runtimeInfo = data;
+                });
+
             };
+
             var computeUri = function(baseUri, reminder) {
                 if (baseUri !== '') {
                     if (baseUri.charAt(baseUri.length - 1) !== '/')
