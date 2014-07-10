@@ -20,9 +20,9 @@
             <input type="text" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
             <section>
                 <table class="containers">
-                    <thead>
-                    <th>Name</th><th>Image</th><th>Status</th>
-                    </thead>
+                    <tr>
+                        <th>Name</th><th>Image</th><th>Status</th>
+                    </tr>
                     <tr ng-repeat="container in containers" ng-click="containerSelected(container.Names[0], container.Id)">
                         <td>{{container.Names[0]}}</td><td>{{container.Image}}</td><td>{{container.Status}}</td>
                     </tr>
@@ -44,7 +44,9 @@
             </section>
             <section class="container-details">
                 <table>
-                    <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
+                    <tr>
+                        <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
+                    </tr>
                     <tr ng-repeat="process in runtimeInfo.Processes">
                         <td ng-repeat="info in process">
                             {{info}}</td>
