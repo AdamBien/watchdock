@@ -12,8 +12,8 @@ ul {
 
 input[type="text"] {
     width: 60%;
-    height: 2em;
-    font-size: 1.5em;
+    height: 1.5em;
+    font-size: 1.1em;
     color:#b2b2b2;
 }
 
@@ -44,6 +44,15 @@ tr:nth-child(even){
 
 .created{
     color:green;
+}
+
+h1,h2,h3{
+    font-weight: normal;
+}
+
+th{
+    font-size: 1.0em;
+    font-weight: normal;
 }
 
 textarea{

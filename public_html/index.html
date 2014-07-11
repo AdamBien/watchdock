@@ -19,7 +19,7 @@
 
             <input type="text" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
             <section>
-                <h2>Images</h2>
+                <h2>images</h2>
                 <table class="containers">
                     <tr>
                         <th>Name</th><th>Image</th><th>Status</th>
@@ -30,7 +30,7 @@
                 </table>
             </section>
             <section class="container-details">
-                <h2>Container info</h2>
+                <h2>container info</h2>
                 <table class = "panel">
                     <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
                     <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
@@ -45,7 +45,7 @@
                 </table>
             </section>
             <section class="container-details">
-                <h2>Process info</h2>
+                <h2>process info</h2>
                 <table>
                     <tr>
                         <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
@@ -56,7 +56,7 @@
                 </table>
             </section>
             <section class="container-details">
-                <h2>File Changes</h2>
+                <h2>file changes</h2>
                 <h3>Path</h3>
                 <ul ng-repeat="change in changes| orderBy:predicate = 'Kind'">
                     <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
@@ -64,7 +64,7 @@
             </section>
 
             <section class="container-details">
-                <h2>Logs</h2>
+                <h2>logs</h2>
                 <textarea>
                 {{logs}}
                 </textarea>
