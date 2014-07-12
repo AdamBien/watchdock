@@ -20,7 +20,8 @@ docker.controller("containerController",
                     $scope.changes = data;
                 });
                 Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"), function(data) {
-                    $scope.logs = data;
+                    var splitted = data.split("\n");
+                    $scope.logs = splitted;
                 });
             };
 

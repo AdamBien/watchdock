@@ -63,9 +63,9 @@
 
             <section class="container-details" ng-show="logs">
                 <h2>logs</h2>
-                <textarea>
-                {{logs}}
-                </textarea>
+                <ul class="log" ng-repeat="line in logs track by $index">
+                    <li class="log-line">{{line}}</li>
+                </ul>
             </section>
         </section>
     </body>
