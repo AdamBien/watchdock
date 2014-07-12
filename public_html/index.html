@@ -63,7 +63,8 @@
 
             <section class="container-details" ng-show="logs">
                 <h2>logs</h2>
-                <ul class="log" ng-repeat="line in logs track by $index">
+                <input type="text" placeholder="Search" ng-model="searchToken"/>
+                <ul class="log" ng-repeat="line in logs| filter:searchToken track by $index">
                     <li class="log-line">{{line}}</li>
                 </ul>
             </section>
