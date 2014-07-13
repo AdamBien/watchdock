@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  manifest="/cache.manifest">
+<html  manifest="cache.manifest">
     <head>
         <title>Docker UI</title>
         <meta charset="UTF-8">
@@ -56,15 +56,16 @@
             <section class="container-details" ng-show="changes">
                 <h2>file changes</h2>
                 <h3>Path</h3>
-                <ul ng-repeat="change in changes| orderBy:predicate = 'Kind'">
+                <input type="text" placeholder="search changes" ng-model="changesSearch"/>
+                <ul ng-repeat="change in changes| filter:changesSearch | orderBy:predicate = 'Kind'">
                     <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
                 </ul>
             </section>
 
             <section class="container-details" ng-show="logs">
                 <h2>logs</h2>
-                <input type="text" placeholder="Search" ng-model="searchToken"/>
-                <ul class="log" ng-repeat="line in logs| filter:searchToken track by $index">
+                <input type="text" placeholder="search logs" ng-model="logSearch"/>
+                <ul class="log" ng-repeat="line in logs| filter:logSearch track by $index">
                     <li class="log-line">{{line}}</li>
                 </ul>
             </section>
