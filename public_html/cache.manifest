@@ -1,3 +1,13 @@
 CACHE MANIFEST
-/index.html
-/layout.css
+#v0.0.1 13.07.2014
+CACHE:
+
+index.html
+layout.css
+lib/angular.js
+lib/app.js
+lib/services.js
+lib/controllers.js
+
+NETWORK:
+*
