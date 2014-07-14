@@ -10,11 +10,19 @@ ul {
     list-style-type: none;
 }
 
-input[type="text"] {
+input[type="text"], input[type="url"] {
     width: 60%;
     height: 1.5em;
     font-size: 1.1em;
     color:#b2b2b2;
+}
+
+.connect{
+    -webkit-appearance: none;
+    height: 1.5em;
+    font-size: 1.1em;
+    background-color: #FFF;
+    color: #666666;
 }
 
 table{

@@ -17,6 +17,7 @@
         </section>
         <section ng-controller="containerController">
             <input type="url" ng-model="host.uri" size="80" ng-click="fetchContainers()" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
+            <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
             <panel title="images" class="container-details">
                 <table class="containers" ng-show="containers">
                     <tr>
