@@ -15,10 +15,10 @@
             <h1>{:watchdock}</h1>
         </section>
         <section ng-controller="containerController">
-            <input type="text" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
+            <input type="text" ng-model="host.uri" size="80" ng-click="fetchContainers()" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
             <section>
-                <h2>images</h2>
-                <table class="containers">
+                <table class="containers" ng-show="containers">
+                    <h2>images</h2>
                     <tr>
                         <th>Name</th><th>Image</th><th>Status</th>
                     </tr>
