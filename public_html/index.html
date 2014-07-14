@@ -8,6 +8,7 @@
         <script src="lib/app.js"></script>
         <script src="lib/services.js"></script>
         <script src="lib/controllers.js"></script>
+        <script src="lib/directives.js"></script>
         <link rel="stylesheet" type="text/css" href="layout.css" />
     </head>
     <body ng-app="docker">
@@ -16,9 +17,8 @@
         </section>
         <section ng-controller="containerController">
             <input type="text" ng-model="host.uri" size="80" ng-click="fetchContainers()" ng-blur="fetchContainers()" ng-init="fetchContainers()"/>
-            <section>
+            <panel title="images" class="container-details">
                 <table class="containers" ng-show="containers">
-                    <h2>images</h2>
                     <tr>
                         <th>Name</th><th>Image</th><th>Status</th>
                     </tr>
@@ -26,9 +26,8 @@
                         <td>{{container.Names[0]}}</td><td>{{container.Image}}</td><td>{{container.Status}}</td>
                     </tr>
                 </table>
-            </section>
-            <section class="container-details" ng-show="containerDetails">
-                <h2>container info</h2>
+            </panel>
+            <panel title="container info" class="container-details" ng-show="containerDetails">
                 <table class = "panel">
                     <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
                     <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
@@ -41,9 +40,8 @@
                     <tr><td>Bridge:</td><td>{{containerDetails.NetworkSettings.Bridge}}</td></tr>
                     <tr><td>Ports:</td><td>{{containerDetails.NetworkSettings.Ports}}</td></tr>
                 </table>
-            </section>
-            <section class="container-details" ng-show="runtimeInfo">
-                <h2>process info</h2>
+            </panel>
+            <panel title="process info" class="container-details" ng-show="runtimeInfo">
                 <table>
                     <tr>
                         <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
@@ -52,23 +50,20 @@
                         <td ng-repeat="info in process">{{info}}</td>
                     </tr>
                 </table>
-            </section>
-            <section class="container-details" ng-show="changes">
-                <h2>file changes</h2>
+            </panel>
+            <panel title="file changes" class="container-details" ng-show="changes">
                 <h3>Path</h3>
                 <input type="text" placeholder="search changes" ng-model="changesSearch"/>
                 <ul ng-repeat="change in changes| filter:changesSearch | orderBy:predicate = 'Kind'">
                     <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
                 </ul>
-            </section>
-
-            <section class="container-details" ng-show="logs">
-                <h2>logs</h2>
+            </panel>
+            <panel title="logs" class="container-details" ng-show="logs">
                 <input type="text" placeholder="search logs" ng-model="logSearch"/>
                 <ul class="log" ng-repeat="line in logs| filter:logSearch track by $index">
                     <li class="log-line">{{line}}</li>
                 </ul>
-            </section>
+            </panel>
         </section>
     </body>
 </html>
