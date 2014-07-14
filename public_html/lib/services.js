@@ -5,14 +5,17 @@ docker.factory('Connection', function() {
 
 docker.factory('Rest', function($http) {
     return{
-        get: function(resource, callback) {
+        get: function(resource, callback, errorhandler) {
             $http.get(resource).
                     success(
                             function(data) {
                                 callback(data);
                             }
-                    );
-
+                    ).error(
+                    function(data) {
+                        errorhandler(data);
+                    }
+            );
         }
     };
 
