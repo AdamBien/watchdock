@@ -17,6 +17,9 @@ input[type="text"], input[type="url"] {
     color:#b2b2b2;
 }
 
+a{
+    text-decoration: none;
+}
 .connect{
     height: 1.5em;
     font-size: 1.1em;
