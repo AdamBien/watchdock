@@ -1,0 +1,82 @@
+body{
+    font-family: Helvetica,Verdana,Arial;
+    width: 100%;
+    color:#666666;
+}
+
+ul {
+    list-style-type: none;
+}
+
+input[type="text"], input[type="url"] {
+    width: 90%;
+    height: 1.5em;
+    font-size: 1.1em;
+    color:#b2b2b2;
+    display: block;
+}
+
+.connect{
+    height: 1.5em;
+    font-size: 1.1em;
+    background-color: #FFF;
+    color: #b2b2b2;
+    visibility: visible;
+}
+
+table{
+    width: 100%;
+    margin:0px;
+}
+
+.containers{
+    margin-top: 1.5em;
+}
+
+.container-details{
+    margin-top: 1.5em;
+}
+
+tr:nth-child(odd){
+    background-color:#e8e8e8;
+}
+tr:nth-child(even){
+    background-color:#fff;
+}
+
+.changed{
+    color: blue;
+}
+
+.created{
+    color:green;
+}
+
+h1,h2,h3{
+    font-weight: normal;
+}
+
+th{
+    font-size: 1.0em;
+    font-weight: normal;
+}
+
+td{
+    font-size: 0.8em;
+}
+
+.log{
+    width: 100%;
+}
+.log-line{
+    font-family: sans-serif;
+    font-size: 0.5em;
+}
+
+.invalid{
+    border: 1px solid red;
+}
+
+.valid{
+    border: 1px solid #e8e8e8;
+}

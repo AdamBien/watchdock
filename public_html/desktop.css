@@ -22,6 +22,7 @@ input[type="text"], input[type="url"] {
     font-size: 1.1em;
     background-color: #FFF;
     color: #b2b2b2;
+    visibility: hidden;
 }
 
 table{
