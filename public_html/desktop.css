@@ -49,6 +49,18 @@ tr:nth-child(even){
     background-color:#fff;
 }
 
+tr{
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    font-size: 0.9em;
+}
+
+tr:hover{
+    color: #F07102;
+}
+
 .changed{
     color: blue;
 }
