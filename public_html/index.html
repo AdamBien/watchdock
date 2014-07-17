@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="lib/angular.js"></script>
+        <script src="lib/angular-route.js"></script>
         <script src="lib/app.js"></script>
         <script src="lib/services.js"></script>
         <script src="lib/controllers.js"></script>
@@ -16,56 +17,22 @@
         <section>
             <h1>{:watchdock}</h1>
         </section>
-        <section ng-controller="containerController">
+        <section ng-controller="containerSelectionController">
             <input type="url" ng-model="host.uri" size="80" ng-click="fetchContainers()" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
             <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
             <panel title="images" class="container-details" ng-show="containers">
                 <table class="containers" ng-show="containers">
                     <tr>
-                        <th>Name</th><th>Image</th><th>Status</th>
+                        <th>name</th><th>image</th><th>status</th>
                     </tr>
                     <tr ng-repeat="container in containers" ng-click="containerSelected(container.Names[0], container.Id)">
                         <td>{{container.Names[0]}}</td><td>{{container.Image}}</td><td>{{container.Status}}</td>
                     </tr>
                 </table>
             </panel>
-            <panel title="container info" class="container-details" ng-show="containerDetails">
-                <table class = "panel">
-                    <tr><td>Id:</td><td>{{containerDetails.ID}}</td></tr>
-                    <tr><td>Hostname:</td><td>{{containerDetails.Config.Hostname}}</td></tr>
-                    <tr><td>Start args:</td><td>{{containerDetails.Args}}</td></tr>
-                    <tr><td>Created:</td><td>{{containerDetails.Created}}</td></tr>
-                    <tr><td>Exposed ports:</td><td>{{containerDetails.Config.ExposedPorts}}</td></tr>
-                    <tr><td>Environment:</td><td>{{containerDetails.Config.Env}}</td></tr>
-                    <tr><td>PID:</td><td>{{containerDetails.State.Pid}}</td></tr>
-                    <tr><td>IP:</td><td>{{containerDetails.NetworkSettings.IPAddress}}</td></tr>
-                    <tr><td>Bridge:</td><td>{{containerDetails.NetworkSettings.Bridge}}</td></tr>
-                    <tr><td>Ports:</td><td>{{containerDetails.NetworkSettings.Ports}}</td></tr>
-                </table>
-            </panel>
-            <panel title="process info" class="container-details" ng-show="runtimeInfo">
-                <table>
-                    <tr>
-                        <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
-                    </tr>
-                    <tr ng-repeat="process in runtimeInfo.Processes">
-                        <td ng-repeat="info in process">{{info}}</td>
-                    </tr>
-                </table>
-            </panel>
-            <panel title="file changes" class="container-details" ng-show="changes">
-                <h3>Path</h3>
-                <input type="text" placeholder="search changes" ng-model="changesSearch"/>
-                <ul ng-repeat="change in changes| filter:changesSearch | orderBy:predicate = 'Kind'">
-                    <li class="{{classForKind(change.Kind)}}">{{change.Path}}</li>
-                </ul>
-            </panel>
-            <panel title="logs" class="container-details" ng-show="logs">
-                <input type="text" placeholder="search logs" ng-model="logSearch"/>
-                <ul class="log" ng-repeat="line in logs| filter:logSearch track by $index">
-                    <li class="log-line">{{line}}</li>
-                </ul>
-            </panel>
+            <section>
+                <ng-view></ng-view>
+            </section>
         </section>
     </body>
 </html>
