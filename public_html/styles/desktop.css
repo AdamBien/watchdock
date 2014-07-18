@@ -49,7 +49,7 @@ tr:nth-child(even){
     background-color:#fff;
 }
 
-tr{
+.containerLink{
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -57,7 +57,7 @@ tr{
     font-size: 0.9em;
 }
 
-tr:hover{
+.containerLink:hover{
     color: #F07102;
 }
 

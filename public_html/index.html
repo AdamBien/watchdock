@@ -25,7 +25,7 @@
                     <tr>
                         <th>name</th><th>image</th><th>status</th>
                     </tr>
-                    <tr ng-repeat="container in containers" ng-click="containerSelected(container.Names[0], container.Id)">
+                    <tr class="containerLink" ng-repeat="container in containers" ng-click="containerSelected(container.Names[0], container.Id)">
                         <td>{{container.Names[0]}}</td><td>{{container.Image}}</td><td>{{container.Status}}</td>
                     </tr>
                 </table>
