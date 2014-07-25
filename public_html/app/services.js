@@ -3,7 +3,7 @@ docker.factory('Connection', function() {
 });
 
 
-docker.factory('Rest', function($http, $q) {
+docker.factory('Docker', function($http, $q) {
     return{
         get: function(resource) {
             var deferred = $q.defer();

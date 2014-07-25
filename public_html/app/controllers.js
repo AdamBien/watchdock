@@ -28,7 +28,7 @@ docker.controller("containerSelectionController",
         }
 );
 docker.controller("containerController",
-        function($scope, $routeParams, Rest, Connection) {
+        function($scope, $routeParams, Docker, Connection) {
 
             $scope.host = Connection;
             $scope.error = false;
@@ -38,28 +38,28 @@ docker.controller("containerController",
             var errorHandler = function(data) {
                 $scope.error = true;
             };
-            var detailsPromise = Rest.get(computeUri(Connection.uri, path));
+            var detailsPromise = Docker.get(computeUri(Connection.uri, path));
             detailsPromise.then(
                     function(data) {
                         $scope.containerDetails = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var topPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/top"));
+            var topPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/top"));
             topPromise.then(
                     function(data) {
                         $scope.runtimeInfo = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var changesPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"));
+            var changesPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"));
             changesPromise.then(
                     function(data) {
                         $scope.changes = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var logsPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"));
+            var logsPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"));
             logsPromise.then(
                     function(data) {
                         var splitted = data.split("\n");
