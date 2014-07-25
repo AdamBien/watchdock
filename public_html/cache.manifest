@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#v0.6.9 18.07.2014
+#v0.7.0 25.07.2014
 
 CACHE:
 
@@ -8,10 +8,10 @@ styles/desktop.css
 styles/touch.css
 lib/angular.js
 lib/angular-route.js
-lib/app.js
-lib/services.js
-lib/controllers.js
-lib/directives.js
+app/app.js
+app/services.js
+app/controllers.js
+app/directives.js
 
 NETWORK:
 *
