@@ -6,14 +6,14 @@ var computeUri = function(baseUri, reminder) {
     return baseUri + reminder;
 };
 docker.controller("containerSelectionController",
-        function($scope, $location, Rest, Connection) {
+        function($scope, $location, Docker, Connection) {
             $scope.host = Connection;
             $scope.error = false;
             var errorHandler = function(data) {
                 $scope.error = true;
             };
             $scope.fetchContainers = function() {
-                var promise = Rest.get(computeUri(Connection.uri, "containers/json"));
+                var promise = Docker.get(computeUri(Connection.uri, "containers/json"));
                 promise.then(function(data) {
                     $scope.containers = data;
                     $scope.error = false;
