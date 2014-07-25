@@ -1,13 +1,13 @@
 CACHE MANIFEST
-#v0.7.0 25.07.2014
+#v0.7.1 25.07.2014
 
 CACHE:
 
 index.html
 styles/desktop.css
 styles/touch.css
-lib/angular.js
-lib/angular-route.js
+ext/angular.js
+ext/angular-route.js
 app/app.js
 app/services.js
 app/controllers.js

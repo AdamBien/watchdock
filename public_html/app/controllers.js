@@ -5,7 +5,6 @@ var computeUri = function(baseUri, reminder) {
     }
     return baseUri + reminder;
 };
-
 docker.controller("containerSelectionController",
         function($scope, $location, Rest, Connection) {
             $scope.host = Connection;
@@ -13,13 +12,12 @@ docker.controller("containerSelectionController",
             var errorHandler = function(data) {
                 $scope.error = true;
             };
-
             $scope.fetchContainers = function() {
-                Rest.get(computeUri(Connection.uri, "containers/json"), function(data) {
+                var promise = Rest.get(computeUri(Connection.uri, "containers/json"));
+                promise.then(function(data) {
                     $scope.containers = data;
                     $scope.error = false;
                 }, errorHandler);
-
             }
 
             $scope.containerSelected = function(containerName, containerId) {
@@ -29,8 +27,6 @@ docker.controller("containerSelectionController",
             };
         }
 );
-
-
 docker.controller("containerController",
         function($scope, $routeParams, Rest, Connection) {
 
@@ -39,24 +35,32 @@ docker.controller("containerController",
             var containerId = $routeParams.containerId;
             console.log(containerId, $scope, Connection);
             var path = "containers/" + containerId + "/json";
-
             var errorHandler = function(data) {
                 $scope.error = true;
             };
+            var detailsPromise = Rest.get(computeUri(Connection.uri, path));
+            detailsPromise.then(
+                    function(data) {
+                        $scope.containerDetails = data;
+                        $scope.error = false;
+                    }, errorHandler);
 
-            Rest.get(computeUri(Connection.uri, path), function(data) {
-                $scope.containerDetails = data;
-                $scope.error = false;
-            }, errorHandler);
-            Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/top"), function(data) {
-                $scope.runtimeInfo = data;
-                $scope.error = false;
-            }, errorHandler);
-            Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"), function(data) {
-                $scope.changes = data;
-                $scope.error = false;
-            }, errorHandler);
-            Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"),
+            var topPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/top"));
+            topPromise.then(
+                    function(data) {
+                        $scope.runtimeInfo = data;
+                        $scope.error = false;
+                    }, errorHandler);
+
+            var changesPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"));
+            changesPromise.then(
+                    function(data) {
+                        $scope.changes = data;
+                        $scope.error = false;
+                    }, errorHandler);
+
+            var logsPromise = Rest.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"));
+            logsPromise.then(
                     function(data) {
                         var splitted = data.split("\n");
                         $scope.logs = splitted;

@@ -3,19 +3,21 @@ docker.factory('Connection', function() {
 });
 
 
-docker.factory('Rest', function($http) {
+docker.factory('Rest', function($http, $q) {
     return{
-        get: function(resource, callback, errorhandler) {
+        get: function(resource) {
+            var deferred = $q.defer();
             $http.get(resource).
                     success(
                             function(data) {
-                                callback(data);
+                                deferred.resolve(data);
                             }
                     ).error(
                     function(data) {
-                        errorhandler(data);
+                        deferred.reject(data);
                     }
             );
+            return deferred.promise;
         }
     };
 
