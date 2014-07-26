@@ -13,6 +13,7 @@ docker.controller("containerSelectionController",
                 $scope.error = true;
             };
             $scope.fetchContainers = function() {
+                Connection.update($scope.host.uri);
                 var promise = Docker.get(computeUri(Connection.uri, "containers/json"));
                 promise.then(function(data) {
                     $scope.containers = data;

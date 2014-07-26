@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="ext/angular.js"></script>
         <script src="ext/angular-route.js"></script>
+        <script src="ext/angular-cookies.js"></script>
         <script src="app/app.js"></script>
         <script src="app/services.js"></script>
         <script src="app/controllers.js"></script>
@@ -18,7 +19,7 @@
             <h1>{:watchdock}</h1>
         </section>
         <section ng-controller="containerSelectionController">
-            <input type="url" ng-model="host.uri" size="80" ng-click="fetchContainers()" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
+            <input type="url" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
             <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
             <panel title="images" class="container-details" ng-show="containers">
                 <table class="containers" ng-show="containers">

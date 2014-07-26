@@ -1,5 +1,5 @@
 'use strict';
-var docker = angular.module('docker', ['ngRoute']);
+var docker = angular.module('docker', ['ngRoute', 'ngCookies']);
 
 docker.config(function($routeProvider) {
     $routeProvider

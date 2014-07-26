@@ -1,5 +1,17 @@
-docker.factory('Connection', function() {
-    return {uri: "http://localhost:5555/"};
+docker.factory('Connection', function($cookieStore) {
+    var key = 'dockerUri';
+    var dockerUri = $cookieStore.get(key);
+    console.log(dockerUri);
+    if (!dockerUri) {
+        dockerUri = "http://localhost:5555/";
+        $cookieStore.put(key, dockerUri);
+    }
+    return {
+        uri: dockerUri,
+        update: function(newUri) {
+            $cookieStore.put(key, newUri);
+        }
+    };
 });
 
 
