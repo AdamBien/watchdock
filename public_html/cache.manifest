@@ -1,9 +1,12 @@
 CACHE MANIFEST
-#v0.9.5 26.07.2014
+#v0.9.6 26.07.2014
 
 CACHE:
 
 index.html
+details.html
+empty.html
+panel.html
 styles/desktop.css
 styles/touch.css
 ext/angular.js
