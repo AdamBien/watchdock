@@ -15,10 +15,10 @@
 <panel title="process info" class="container-details" ng-show="runtimeInfo">
     <table>
         <tr>
-            <th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th>
+            <th ng-repeat="title in runtimeInfo.Titles">{{title}}</th>
         </tr>
         <tr ng-repeat="process in runtimeInfo.Processes">
-            <td ng-repeat="info in process">{{info}}</td>
+            <td ng-repeat="info in process track by $index">{{info}}</td>
         </tr>
     </table>
 </panel>

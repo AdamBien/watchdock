@@ -46,7 +46,7 @@ docker.controller("containerController",
                         $scope.error = false;
                     }, errorHandler);
 
-            var topPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/top"));
+            var topPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/top?ps_args=aux"));
             topPromise.then(
                     function(data) {
                         $scope.runtimeInfo = data;
