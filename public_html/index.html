@@ -24,6 +24,7 @@
             <section ng-controller="infoController">
                 <h2>info</h2>
                 <ul>
+                    <li>Docker version: {{version.Version}} {{version.GitCommit}}, API Version: {{version.ApiVersion}}</li>
                     <li>Number of containers: {{info.Containers}}</li>
                     <li>Docker root dir: {{info.DockerRootDir}}</li>
                     <li>Driver: {{info.Driver}}</li>
