@@ -8,8 +8,10 @@
         <tr><td>Environment:</td><td>{{containerDetails.Config.Env}}</td></tr>
         <tr><td>PID:</td><td>{{containerDetails.State.Pid}}</td></tr>
         <tr><td>IP:</td><td>{{containerDetails.NetworkSettings.IPAddress}}</td></tr>
+        <tr><td>Gateway:</td><td>{{containerDetails.NetworkSettings.Gateway}}</td></tr>
         <tr><td>Bridge:</td><td>{{containerDetails.NetworkSettings.Bridge}}</td></tr>
         <tr><td>Ports:</td><td>{{containerDetails.NetworkSettings.Ports}}</td></tr>
+        <tr><td>Path</td><td>{{containerDetails.Path}}</td></tr>
     </table>
 </panel>
 <panel title="process info" class="container-details" ng-show="runtimeInfo">

@@ -22,13 +22,14 @@
             <input type="url" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
             <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
             <section ng-controller="infoController">
+                <h2>info</h2>
                 <ul>
                     <li>Number of containers: {{info.Containers}}</li>
                     <li>Docker root dir: {{info.DockerRootDir}}</li>
                     <li>Driver: {{info.Driver}}</li>
                     <li>IPv4Forwarding: {{info.IPv4Forwarding}}</li>
+                    <li>Kernel version: {{info.KernelVersion}}</li>
                 </ul>
-                {{info}}
             </section>
             <panel title="images" class="container-details" ng-show="containers">
                 <table class="containers" ng-show="containers">
