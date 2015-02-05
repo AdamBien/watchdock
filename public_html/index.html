@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  manifest="cache.manifest">
+<html> <!--  manifest="cache.manifest"-->
     <head>
         <title>Docker UI</title>
         <meta charset="UTF-8">
@@ -22,6 +22,12 @@
             <input type="url" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
             <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
             <section ng-controller="infoController">
+                <ul>
+                    <li>Number of containers: {{info.Containers}}</li>
+                    <li>Docker root dir: {{info.DockerRootDir}}</li>
+                    <li>Driver: {{info.Driver}}</li>
+                    <li>IPv4Forwarding: {{info.IPv4Forwarding}}</li>
+                </ul>
                 {{info}}
             </section>
             <panel title="images" class="container-details" ng-show="containers">
