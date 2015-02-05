@@ -21,6 +21,9 @@
         <section ng-controller="containerSelectionController">
             <input type="url" ng-model="host.uri" size="80" ng-blur="fetchContainers()" ng-init="fetchContainers()" ng-class="{'invalid':error,'valid':!error}" required/>
             <input type="button" value="connect" ng-click="fetchContainers()" class="connect"/>
+            <section ng-controller="infoController">
+                {{info}}
+            </section>
             <panel title="images" class="container-details" ng-show="containers">
                 <table class="containers" ng-show="containers">
                     <tr>
