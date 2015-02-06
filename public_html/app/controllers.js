@@ -14,7 +14,7 @@ docker.controller("containerSelectionController",
             };
             $scope.fetchContainers = function () {
                 Connection.update($scope.host.uri);
-                var promise = Docker.get(computeUri(Connection.uri, "containers/json"));
+                var promise = Docker.getContainers();
                 promise.then(function (data) {
                     $scope.containers = data;
                     $scope.error = false;
@@ -35,32 +35,31 @@ docker.controller("containerController",
             $scope.error = false;
             var containerId = $routeParams.containerId;
             console.log(containerId, $scope, Connection);
-            var path = "containers/" + containerId + "/json";
             var errorHandler = function (data) {
                 $scope.error = true;
             };
-            var detailsPromise = Docker.get(computeUri(Connection.uri, path));
+            var detailsPromise = Docker.getContainerDetails();
             detailsPromise.then(
                     function (data) {
                         $scope.containerDetails = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var topPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/top?ps_args=aux"));
+            var topPromise = Docker.getRuntimeInfo();
             topPromise.then(
                     function (data) {
                         $scope.runtimeInfo = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var changesPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/changes"));
+            var changesPromise = Docker.getContainerChanges();
             changesPromise.then(
                     function (data) {
                         $scope.changes = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var logsPromise = Docker.get(computeUri(Connection.uri, "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all"));
+            var logsPromise = Docker.getContainerLogs();
             logsPromise.then(
                     function (data) {
                         var splitted = data.split("\n");
