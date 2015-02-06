@@ -12,6 +12,8 @@
         <tr><td>Bridge:</td><td>{{containerDetails.NetworkSettings.Bridge}}</td></tr>
         <tr><td>Ports:</td><td>{{containerDetails.NetworkSettings.Ports}}</td></tr>
         <tr><td>Path</td><td>{{containerDetails.Path}}</td></tr>
+        <tr><td>Links:</td><td>{{containerDetails.HostConfig.Links}}</td></tr>
+        <tr><td>Volumes:</td><td>{{containerDetails.Volumes}}</td></tr>
     </table>
 </panel>
 <panel title="process info" class="container-details" ng-show="runtimeInfo">
