@@ -1,5 +1,5 @@
 docker.controller("containerSelectionController",
-        function ($scope, $location, Docker, Connection) {
+        function ($scope, $location, Containers, Connection) {
             $scope.host = Connection;
             $scope.error = false;
             var errorHandler = function (data) {
@@ -7,7 +7,7 @@ docker.controller("containerSelectionController",
             };
             $scope.fetchContainers = function () {
                 Connection.update($scope.host.uri);
-                var promise = Docker.getContainers();
+                var promise = Containers.getAll();
                 promise.then(function (data) {
                     $scope.containers = data;
                     $scope.error = false;
@@ -31,28 +31,28 @@ docker.controller("containerController",
             var errorHandler = function (data) {
                 $scope.error = true;
             };
-            var detailsPromise = Containers.getContainerDetails();
+            var detailsPromise = Containers.getDetails();
             detailsPromise.then(
                     function (data) {
                         $scope.containerDetails = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var topPromise = Docker.getRuntimeInfo();
+            var topPromise = Containers.getRuntimeInfo();
             topPromise.then(
                     function (data) {
                         $scope.runtimeInfo = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var changesPromise = Containers.getContainerChanges();
+            var changesPromise = Containers.getChanges();
             changesPromise.then(
                     function (data) {
                         $scope.changes = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var logsPromise = Containers.getContainerLogs();
+            var logsPromise = Containers.getLogs();
             logsPromise.then(
                     function (data) {
                         var splitted = data.split("\n");
@@ -69,6 +69,13 @@ docker.controller("containerController",
         }
 );
 
+docker.controller("imagesController", function ($scope, Images) {
+    var images = Images.query(function () {
+        $scope.images = images;
+    });
+
+});
+
 docker.controller("infoController", function ($scope, Docker) {
     var infoPromise = Docker.getInfo();
     infoPromise.then(function (data) {
@@ -79,3 +86,4 @@ docker.controller("infoController", function ($scope, Docker) {
         $scope.version = data;
     });
 });
+

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html> <!--  manifest="cache.manifest"-->
     <head>
-        <title>Docker UI</title>
+        <title>Docker Watchdog</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="ext/angular.js"></script>
         <script src="ext/angular-route.js"></script>
         <script src="ext/angular-cookies.js"></script>
+        <script src="ext/angular-resource.js"></script>
         <script src="app/app.js"></script>
         <script src="app/services.js"></script>
         <script src="app/controllers.js"></script>
@@ -32,7 +33,14 @@
                     <li>Kernel version: {{info.KernelVersion}}</li>
                 </ul>
             </section>
-            <panel title="images" class="container-details" ng-show="containers">
+            <section ng-controller="imagesController">
+                <h2>images</h2>
+                {{images}}
+                <table class="containers">
+                </table>
+            </section>
+
+            <panel title="containers" class="container-details" ng-show="containers">
                 <table class="containers" ng-show="containers">
                     <tr>
                         <th>name</th><th>image</th><th>status</th>

@@ -1,7 +1,7 @@
 'use strict';
-var docker = angular.module('docker', ['ngRoute', 'ngCookies']);
+var docker = angular.module('docker', ['ngRoute', 'ngCookies', 'ngResource']);
 
-docker.config(function($routeProvider) {
+docker.config(function ($routeProvider) {
     $routeProvider
             .when('/', {
                 templateUrl: "empty.html"

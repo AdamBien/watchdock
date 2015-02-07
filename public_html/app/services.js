@@ -30,28 +30,27 @@ docker.factory('Http', function (Connection, $http, $q) {
             return deferred.promise;
         }
     };
-
 });
 docker.factory('Containers', function (Http) {
     return{
-        getContainers: function () {
-            return get("containers/json");
+        getAll: function () {
+            return Http.get("containers/json");
         },
-        getContainerDetails: function (containerId) {
+        getDetails: function (containerId) {
             var path = "containers/" + containerId + "/json";
-            return get(path);
+            return Http.get(path);
         },
         getRuntimeInfo: function (containerId) {
             var path = "containers/" + containerId + "/top?ps_args=aux";
-            return get(path);
+            return Http.get(path);
         },
-        getContainerChanges: function (containerId) {
+        getChanges: function (containerId) {
             var path = "containers/" + containerId + "/changes";
-            return get(path);
+            return Http.get(path);
         },
         getLogs: function (containerId) {
             var path = "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all";
-            return get(path);
+            return Http.get(path);
         }
     };
 });
@@ -59,11 +58,16 @@ docker.factory('Containers', function (Http) {
 docker.factory('Docker', function (Http) {
     return{
         getInfo: function () {
-            return get("info");
+            return Http.get("info");
         },
         getVersion: function () {
-            return get("version");
+            return Http.get("version");
         }
 
     };
 });
+
+docker.factory('Images', function (Connection, $resource) {
+    return $resource(Connection.uri + "images/json");
+});
+
