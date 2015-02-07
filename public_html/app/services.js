@@ -50,29 +50,14 @@ docker.factory('Docker', function (Connection, $http, $q) {
         getLogs: function (containerId) {
             var path = "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all";
             return get(path);
+        },
+        getInfo: function () {
+            return get("info");
         }
     };
 
 });
 
-docker.factory('Info', function ($http, $q, Connection) {
-    return{
-        get: function () {
-            var deferred = $q.defer();
-            $http.get(Connection.uri + "info").
-                    success(
-                            function (data) {
-                                deferred.resolve(data);
-                            }
-                    ).error(
-                    function (data) {
-                        deferred.reject(data);
-                    }
-            );
-            return deferred.promise;
-        }
-    }
-});
 docker.factory('Version', function ($http, $q, Connection) {
     return{
         get: function () {

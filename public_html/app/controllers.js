@@ -76,8 +76,8 @@ docker.controller("containerController",
         }
 );
 
-docker.controller("infoController", function ($scope, Info, Version) {
-    var infoPromise = Info.get();
+docker.controller("infoController", function ($scope, Docker, Version) {
+    var infoPromise = Docker.getInfo();
     infoPromise.then(function (data) {
         $scope.info = data;
     });
