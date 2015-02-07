@@ -53,26 +53,11 @@ docker.factory('Docker', function (Connection, $http, $q) {
         },
         getInfo: function () {
             return get("info");
+        },
+        getVersion: function () {
+            return get("version");
         }
+
     };
 
-});
-
-docker.factory('Version', function ($http, $q, Connection) {
-    return{
-        get: function () {
-            var deferred = $q.defer();
-            $http.get(Connection.uri + "version").
-                    success(
-                            function (data) {
-                                deferred.resolve(data);
-                            }
-                    ).error(
-                    function (data) {
-                        deferred.reject(data);
-                    }
-            );
-            return deferred.promise;
-        }
-    }
 });

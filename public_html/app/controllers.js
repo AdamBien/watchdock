@@ -76,12 +76,12 @@ docker.controller("containerController",
         }
 );
 
-docker.controller("infoController", function ($scope, Docker, Version) {
+docker.controller("infoController", function ($scope, Docker) {
     var infoPromise = Docker.getInfo();
     infoPromise.then(function (data) {
         $scope.info = data;
     });
-    var versionPromise = Version.get();
+    var versionPromise = Docker.getVersion();
     versionPromise.then(function (data) {
         $scope.version = data;
     });
