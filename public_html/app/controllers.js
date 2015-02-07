@@ -27,32 +27,31 @@ docker.controller("containerController",
             $scope.host = Connection;
             $scope.error = false;
             var containerId = $routeParams.containerId;
-            console.log(containerId, $scope, Connection);
             var errorHandler = function (data) {
                 $scope.error = true;
             };
-            var detailsPromise = Containers.getDetails();
+            var detailsPromise = Containers.getDetails(containerId);
             detailsPromise.then(
                     function (data) {
                         $scope.containerDetails = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var topPromise = Containers.getRuntimeInfo();
+            var topPromise = Containers.getRuntimeInfo(containerId);
             topPromise.then(
                     function (data) {
                         $scope.runtimeInfo = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var changesPromise = Containers.getChanges();
+            var changesPromise = Containers.getChanges(containerId);
             changesPromise.then(
                     function (data) {
                         $scope.changes = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var logsPromise = Containers.getLogs();
+            var logsPromise = Containers.getLogs(containerId);
             logsPromise.then(
                     function (data) {
                         var splitted = data.split("\n");
