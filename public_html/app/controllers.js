@@ -1,10 +1,3 @@
-var computeUri = function (baseUri, reminder) {
-    if (baseUri && baseUri !== '' && baseUri.length > 2) {
-        if (baseUri.charAt(baseUri.length - 1) !== '/')
-            baseUri += '/';
-    }
-    return baseUri + reminder;
-};
 docker.controller("containerSelectionController",
         function ($scope, $location, Docker, Connection) {
             $scope.host = Connection;
@@ -29,7 +22,7 @@ docker.controller("containerSelectionController",
         }
 );
 docker.controller("containerController",
-        function ($scope, $routeParams, Docker, Connection) {
+        function ($scope, $routeParams, Containers, Connection) {
 
             $scope.host = Connection;
             $scope.error = false;
@@ -38,7 +31,7 @@ docker.controller("containerController",
             var errorHandler = function (data) {
                 $scope.error = true;
             };
-            var detailsPromise = Docker.getContainerDetails();
+            var detailsPromise = Containers.getContainerDetails();
             detailsPromise.then(
                     function (data) {
                         $scope.containerDetails = data;
@@ -52,14 +45,14 @@ docker.controller("containerController",
                         $scope.error = false;
                     }, errorHandler);
 
-            var changesPromise = Docker.getContainerChanges();
+            var changesPromise = Containers.getContainerChanges();
             changesPromise.then(
                     function (data) {
                         $scope.changes = data;
                         $scope.error = false;
                     }, errorHandler);
 
-            var logsPromise = Docker.getContainerLogs();
+            var logsPromise = Containers.getContainerLogs();
             logsPromise.then(
                     function (data) {
                         var splitted = data.split("\n");
@@ -85,5 +78,4 @@ docker.controller("infoController", function ($scope, Docker) {
     versionPromise.then(function (data) {
         $scope.version = data;
     });
-
 });

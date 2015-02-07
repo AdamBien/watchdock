@@ -13,31 +13,33 @@ docker.factory('Connection', function ($cookieStore) {
         }
     };
 });
-
-
-docker.factory('Docker', function (Connection, $http, $q) {
-    var get = function (resource) {
-        var deferred = $q.defer();
-        $http.get(Connection.uri + resource).
-                success(
-                        function (data) {
-                            deferred.resolve(data);
-                        }
-                ).error(
-                function (data) {
-                    deferred.reject(data);
-                }
-        );
-        return deferred.promise;
+docker.factory('Http', function (Connection, $http, $q) {
+    return{
+        get: function (resource) {
+            var deferred = $q.defer();
+            $http.get(Connection.uri + resource).
+                    success(
+                            function (data) {
+                                deferred.resolve(data);
+                            }
+                    ).error(
+                    function (data) {
+                        deferred.reject(data);
+                    }
+            );
+            return deferred.promise;
+        }
     };
 
+});
+docker.factory('Containers', function (Http) {
     return{
         getContainers: function () {
-            return get(Connection.uri + "containers/json");
+            return get("containers/json");
         },
         getContainerDetails: function (containerId) {
             var path = "containers/" + containerId + "/json";
-            return get(Connection.uri + path);
+            return get(path);
         },
         getRuntimeInfo: function (containerId) {
             var path = "containers/" + containerId + "/top?ps_args=aux";
@@ -50,7 +52,12 @@ docker.factory('Docker', function (Connection, $http, $q) {
         getLogs: function (containerId) {
             var path = "containers/" + containerId + "/logs?stderr=1&stdout=1&timestamps=1&follow=0&tail=all";
             return get(path);
-        },
+        }
+    };
+});
+
+docker.factory('Docker', function (Http) {
+    return{
         getInfo: function () {
             return get("info");
         },
@@ -59,5 +66,4 @@ docker.factory('Docker', function (Connection, $http, $q) {
         }
 
     };
-
 });
