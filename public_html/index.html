@@ -35,8 +35,14 @@
             </section>
             <section ng-controller="imagesController">
                 <h2>images</h2>
-                {{images}}
                 <table class="containers">
+                    <tr>
+                        <th>created</th><th>id</th><th>status</th><th>size</th><th>virtual size</th>
+                    </tr>
+                    <tr class="containerLink" ng-repeat="image in images">
+                        <td>{{image.Created}}</td><td>{{image.Id}}</td><td>{{image.RepoTags}}</td><td>{{image.Size}}</td><td>{{image.VirtualSize}}</td>
+                    </tr>
+
                 </table>
             </section>
 
