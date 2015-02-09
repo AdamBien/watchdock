@@ -1,0 +1,16 @@
+{
+    "name": "watchdock",
+    "version": "1.0.0",
+    "main": "path/to/main.css",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "angular-resource": ">=1.4",
+        "angular": ">=1.4",
+        "angular-route": ">=1.4",
+        "angular-cookies": ">=1.4"
+    },
+    "devDependencies": {}
+}
