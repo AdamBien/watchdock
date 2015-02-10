@@ -40,7 +40,11 @@
                         <th>created</th><th>id</th><th>status</th><th>size</th><th>virtual size</th>
                     </tr>
                     <tr ng-repeat="image in images">
-                        <td>{{image.Created}}</td><td>{{image.Id}}</td><td>{{image.RepoTags}}</td><td>{{image.Size}}</td><td>{{image.VirtualSize}}</td>
+                        <td>{{image.Created| date:'MM/dd/yyyy @ h:mma'}}</td>
+                        <td>{{image.Id| limitTo: 12}}...</td>
+                        <td>{{image.RepoTags}}</td>
+                        <td>{{image.Size| number}}</td>
+                        <td>{{image.VirtualSize| number}}</td>
                     </tr>
 
                 </table>
