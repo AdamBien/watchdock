@@ -1,13 +1,8 @@
 body{
-    font-family: Helvetica,Verdana,Arial;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
-    color:#666666;
 
-}
-ul {
-    list-style-type: none;
 }
 
 input[type="text"], input[type="url"] {
@@ -28,11 +23,6 @@ a{
     visibility: hidden;
 }
 
-table{
-    width: 100%;
-    margin:0px;
-
-}
 
 .containers{
     margin-top: 3em;

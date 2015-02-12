@@ -1,5 +1,4 @@
 body{
-    font-family: Helvetica,Verdana,Arial;
     width: 100%;
     color:#666666;
 }
@@ -16,9 +15,6 @@ input[type="text"], input[type="url"] {
     display: block;
 }
 
-a{
-    text-decoration: none;
-}
 
 .connect{
     height: 1.5em;
@@ -28,10 +24,6 @@ a{
     visibility: visible;
 }
 
-table{
-    width: 100%;
-    margin:0px;
-}
 
 .containers{
     margin-top: 1.5em;
